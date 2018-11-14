@@ -28,9 +28,13 @@ def __init__(self, image, size, center):
 	self.image = image
 	self.size = [size[0], size[1]]
 	self.center = [center[0], center[1]]
+	self.degree = self.size
 
 def set_degree(self, degree):
-	pass
+	"""
+	change the degree of zoomming
+	"""
+	self.degree = degree
 
 
 # event handlers
