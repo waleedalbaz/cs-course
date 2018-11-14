@@ -1,3 +1,4 @@
+# I'll do some OOP modifications
 import simplegui
 
 # global veriables
@@ -20,6 +21,14 @@ MAG_POS = [CANV_SIZE[0]//2, CANV_SIZE[1]//2]
 print 'MAG_POS', MAG_POS
 print "W =", CANV_SIZE[0]
 print "H =", CANV_SIZE[1]
+
+# class
+class Magnifier()
+def __init__(self, image, size, center):
+	self.image = image
+	self.size = [size[0], size[1]]
+	self.center = [center[0], center[1]]
+
 
 # event handlers
 def click(pos):
