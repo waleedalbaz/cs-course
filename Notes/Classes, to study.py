@@ -1,3 +1,4 @@
+# I wrote this one on the Github itself
 # ball physics code for generic 2D domain
 # the functions inside() and normal() encode the shape of the ennvironment
 
