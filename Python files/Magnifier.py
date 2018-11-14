@@ -29,6 +29,9 @@ def __init__(self, image, size, center):
 	self.size = [size[0], size[1]]
 	self.center = [center[0], center[1]]
 
+def set_degree(self, degree):
+	pass
+
 
 # event handlers
 def click(pos):
