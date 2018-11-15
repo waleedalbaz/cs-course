@@ -5,22 +5,14 @@ import simplegui
 image = simplegui.load_image('https://cyprussite.com/img/map06.jpg')
 #image dims
 W_IMG = 3029
-print "W_IMG", W_IMG
 H_IMG = 2163
-print "H_IMG", H_IMG
+
 MAG_SIZE = 120
 CENT_IMG = [W_IMG//2, H_IMG//2]
-print 'CENT_IMG',CENT_IMG
-
 SCALE = 3.0
 CANV_SIZE = [W_IMG // SCALE, H_IMG // SCALE]
-print 'CANV_SIZE', CANV_SIZE
 CENT_CANV = [CANV_SIZE[0]/2, CANV_SIZE[1]//2]
-print 'CENT_CANV', CENT_CANV
 MAG_POS = [CANV_SIZE[0]//2, CANV_SIZE[1]//2]
-print 'MAG_POS', MAG_POS
-print "W =", CANV_SIZE[0]
-print "H =", CANV_SIZE[1]
 
 # classes
 class ImageInfo():
@@ -49,10 +41,10 @@ class Magnifier():
     """
     def __init__(self, image, pos, size):
         self.image = image
-        self.pos = pos
+        self.pos = [pos[0], pos[1]]
         self.size = size
         self.degree = 3.0
-        self.center = [self.degree*self.pos[0], self.degree*self.pos[1]]
+        #self.center = [self.pos[0]*self.degree, self.pos[1]*self.degree]
 
     def set_pos(self, pos):
         self.pos = pos
@@ -81,12 +73,19 @@ class Magnifier():
     def get_size(self):
         return self.size
 
+    def draw_magnifier(self, canvas):
+        center1 = [self.get_position()[0]*self.degree,
+                    self.get_position()[1]*self.degree]
+        center2 = self.get_position()
+        size = self.get_size()
+        canvas.draw_image(image, center1, size, center2, size)
+
 # objects
 # image info
 image_info = ImageInfo(CENT_IMG, [W_IMG, H_IMG])
 
 # magnifier
-Magnifier_glass = Magnifier(image, MAG_POS, MAG_SIZE)
+Magnifier_glass = Magnifier(image, MAG_POS, [MAG_SIZE, MAG_SIZE])
 
 # event handlers
 def click(pos):
@@ -100,16 +99,9 @@ def draw(canvas):
                  #     [CANV_SIZE[0]//2, CANV_SIZE[1]//2],CANV_SIZE)
     canvas.draw_image(image, image_info.get_center(), image_info.get_size(),
                         [CANV_SIZE[0]//2, CANV_SIZE[1]//2], CANV_SIZE)
+
     # draw mag
-    map_center = Magnifier_glass.get_center()
-    map_rectangle = Magnifier_glass.get_size()
-    mag_center = Magnifier_glass.get_position()
-    mag_rectangle = Magnifier_glass.get_size()
-    print "map_center: "+str(map_center)
-    print "map_rectangle: "+str(map_rectangle)
-    print "mag_rectangle: "+str(mag_rectangle)
-    canvas.draw_image(image, map_center, [map_rectangle, map_rectangle],
-                      mag_center, [mag_rectangle, mag_rectangle])
+    Magnifier_glass.draw_magnifier(canvas)
 
 # create frame and its handler rigsters
 f = simplegui.create_frame("Magnifier", CANV_SIZE[0], CANV_SIZE[1])
