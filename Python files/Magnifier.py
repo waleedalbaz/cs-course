@@ -97,12 +97,9 @@ Magnifier_glass = Magnifier(image, MAG_POS, [MAG_SIZE, MAG_SIZE])
 
 # event handlers
 def click(pos):
-    # global MAG_POS
-    # MAG_POS = list(pos)
     Magnifier_glass.set_pos(list(pos))
 
 def draw(canvas):
-
     # draw orignal image
     image_info.draw_org_image(canvas)
 
