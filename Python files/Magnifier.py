@@ -35,6 +35,14 @@ class ImageInfo():
         """
         return self.size
 
+    def draw_org_image(self, canvas):
+        img_center = self.get_center()
+        img_size = self.get_size()
+        canv_center = [CANV_SIZE[0]//2, CANV_SIZE[1]//2]
+        canvas.draw_image(image, img_center, img_size,
+                          canv_center, CANV_SIZE)
+
+
 class Magnifier():
     """
     create a magnifier glass
@@ -94,11 +102,9 @@ def click(pos):
     Magnifier_glass.set_pos(list(pos))
 
 def draw(canvas):
-#    canvas.draw_image(image,
-                  #    [W_IMG//2, H_IMG//2], [W_IMG, H_IMG],
-                 #     [CANV_SIZE[0]//2, CANV_SIZE[1]//2],CANV_SIZE)
-    canvas.draw_image(image, image_info.get_center(), image_info.get_size(),
-                        [CANV_SIZE[0]//2, CANV_SIZE[1]//2], CANV_SIZE)
+
+    # draw orignal image
+    image_info.draw_org_image(canvas)
 
     # draw mag
     Magnifier_glass.draw_magnifier(canvas)
