@@ -25,7 +25,7 @@ def evaluate_position(num_items):
             total = first_move
             win = True
             # play moves till reach 0 (win)
-            while total < num_items: # loop within specific game
+            while total < num_items: # loop within a specific game
                 # choose a move randomly while gaming
                 total += random.randrange(1, MAX_REMOVE + 1)
                 win = not win
