@@ -34,7 +34,7 @@ def evaluate_position(num_items):
                 wins += 1
         # ration wins from all trials
         current_percentage = float(wins) / TRIALS
-        # if percent change, updated the best percent with it
+        # if percent has increased, updated the best percent with it
         if current_percentage > best_percentage:
             best_percentage = current_percentage
             # best move between all trials
